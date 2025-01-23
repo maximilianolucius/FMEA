@@ -1,0 +1,21 @@
+# Core dependencies
+pyautogen==0.2.14
+vllm>=0.3.3
+openai>=1.12.0
+tqdm>=4.66.1
+numpy>=1.26.3
+langchain>=0.1.0
+faiss-cpu>=1.7.4
+sentence-transformers>=2.2.2
+pyext
+word2number
+scipy
+latex2sympy
+
+# Optional/Backend-specific
+torch>=2.1.0
+datasets>=2.14.0  # For HuggingFace dataset handling
+python-dotenv>=1.0.0  # For environment variables
+
+# Math evaluation
+sympy>=1.12  # For math problem evaluation
