@@ -1,0 +1,111 @@
+[
+  {
+    "prompt_index": 1,
+    "original_text": "The order rate decision, if it is to bring actual inventory towards desired inventory, must increase the order rate as inventory falls below desired inventory. Conversely, as inventory rises toward the desired inventory, order rate should be reduced.",
+    "result": {
+      "variables": [
+        "actual_inventory",
+        "desired_inventory",
+        "order_rate"
+      ],
+      "relationships": [
+        {
+          "cause": "order_rate",
+          "effect": "actual_inventory",
+          "type": "Positive",
+          "loop_type": "Balancing",
+          "description": "When order rate increases, actual inventory increases, bringing it closer to the desired inventory."
+        },
+        {
+          "cause": "actual_inventory",
+          "effect": "order_rate",
+          "type": "Negative",
+          "loop_type": "Balancing",
+          "description": "As actual inventory approaches the desired inventory, order rate decreases to maintain the balance."
+        },
+        {
+          "cause": "actual_inventory",
+          "effect": "order_rate",
+          "type": "Negative",
+          "loop_type": "Balancing",
+          "description": "When actual inventory falls below the desired inventory, order rate increases to bring actual inventory closer to the desired inventory."
+        }
+      ],
+      "dot_code": "digraph CLD {\n    actual_inventory -> order_rate [label=\"Decreases\", arrowhead=open];\n    order_rate -> actual_inventory [label=\"Increases\", arrowhead=open];\n}"
+    }
+  },
+  {
+    "prompt_index": 2,
+    "original_text": "A hot cup of coffee will gradually cool down to room temperature. Its rate of cooling depends on the difference between the temperature of the coffee and the temperature of the room. The greater the difference, the faster the coffee will cool.",
+    "result": {
+      "variables": [],
+      "relationships": [],
+      "dot_code": ""
+    }
+  },
+  {
+    "prompt_index": 3,
+    "original_text": "The more my uncle smokes, the more addicted he becomes to the nicotine in his cigarettes. After smoking a few cigarettes a long time ago, my uncle began to develop a need for cigarettes. The need caused him to smoke even more, which produced an even stronger need to smoke. The reinforcing behavior in the addiction process is characteristic of positive feedback.",
+    "result": {
+      "variables": [
+        "Uncle's smoking",
+        "Addiction",
+        "Nicotine",
+        "Need for cigarettes"
+      ],
+      "relationships": [
+        {
+          "cause": "Uncle's smoking",
+          "effect": "Addiction",
+          "type": "Positive",
+          "loop_type": "Reinforcing"
+        },
+        {
+          "cause": "Addiction",
+          "effect": "Need for cigarettes",
+          "type": "Positive",
+          "loop_type": "Reinforcing"
+        },
+        {
+          "cause": "Need for cigarettes",
+          "effect": "Uncle's smoking",
+          "type": "Positive",
+          "loop_type": "Reinforcing"
+        }
+      ],
+      "dot_code": "digraph CLD {\n    Uncle_Smoking -> Addiction\n    Addiction -> Need_for_Cigarettes\n    Need_for_Cigarettes -> Uncle_Smoking\n}"
+    }
+  },
+  {
+    "prompt_index": 4,
+    "original_text": "A larger population leads to a higher number of births, and higher births lead to a higher population. The larger population will tend to have a greater number of deaths.",
+    "result": {
+      "variables": [
+        "population",
+        "births",
+        "deaths"
+      ],
+      "relationships": [
+        {
+          "cause": "population",
+          "effect": "births",
+          "type": "positive",
+          "loop_type": "reinforcing"
+        },
+        {
+          "cause": "births",
+          "effect": "population",
+          "type": "positive",
+          "loop_type": "reinforcing"
+        },
+        {
+          "cause": "population",
+          "effect": "deaths",
+          "type": "positive",
+          "loop_type": "balancing"
+        }
+      ],
+      "dot_code": "graph {\n  subgraph cluster_A {\n    population -> births [arrowhead=open, label=\"positive (reinforcing)\"];\n    births -> population [arrowhead=open, label=\"positive (reinforcing)\"];\n  }\n  subgraph cluster_B {\n    population -> deaths [arrowhead=open, label=\"positive (balancing)\"];\n  }\n}"
+    }
+  }
+]
